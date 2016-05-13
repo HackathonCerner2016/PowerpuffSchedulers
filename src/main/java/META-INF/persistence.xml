@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+	<persistence-unit name="PowerpuffSchedulers" transaction-type="RESOURCE_LOCAL">
+		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+		<class>ro.cerner.envdashboard.persistence.model.Checker</class>
+		<class>ro.cerner.envdashboard.persistence.model.CheckerDefinition</class>
+		<class>ro.cerner.envdashboard.persistence.model.CheckerDetails</class>
+		<class>ro.cerner.envdashboard.persistence.model.CheckerResult</class>
+		<class>ro.cerner.envdashboard.persistence.model.CheckerType</class>
+		<class>ro.cerner.envdashboard.persistence.model.Environment</class>
+		<class>ro.cerner.envdashboard.persistence.model.Machine</class>
+		<properties>
+		
+			<property name="driverClassName" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>
+			<property name="url" value="jdbc:sqlserver://10.176.221.33:1433;databaseName=PowerPuffSchedulers;integratedSecurity=false;"/>
+			<property name="username" value="sa"/>
+			<property name="password" value="Nursing1!"/>
+		</properties>
+		
+	</persistence-unit>
+</persistence>
