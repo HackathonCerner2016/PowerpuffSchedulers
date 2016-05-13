@@ -26,6 +26,7 @@ targetCompatibility = 1.8
 dependencies {
 
     compile files('libs/sqljdbc42.jar')
+    compile("org.springframework:spring-jdbc")
 	
     // tag::jetty[]
     compile("org.springframework.boot:spring-boot-starter-web") {
