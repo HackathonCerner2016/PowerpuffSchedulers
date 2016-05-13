@@ -31,7 +31,7 @@ public class Checker implements Serializable {
 	@ManyToOne
 	@JoinColumn(name="MachineId")
 	private Machine machine;
-
+	
 	public Checker() {
 	}
 
