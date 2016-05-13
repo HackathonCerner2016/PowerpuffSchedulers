@@ -1,18 +1,21 @@
 package ro.cerner.envdashboard.businesslogic;
 
 public final class CheckResult {
-    public final boolean status;
+    public final CheckStatus status;
     public final String message;
+    
+	public CheckResult(CheckStatus status, String message) {
+		this.status = status;
+		this.message = message;
+	}
+    
+	public CheckResult(CheckStatus status) {
+		this(status, "");
+	}
 
-    public CheckResult(boolean status, String message) {
-        super();
-        this.status = status;
-        this.message = message;
-    }
-
-    @Override
-    public String toString() {
-        return "CheckResult [status=" + status + ", message=" + message + "]";
-    }
-
+	@Override
+	public String toString() {
+		return "CheckResult [status=" + status + ", message=" + message + "]";
+	}
+	
 }
