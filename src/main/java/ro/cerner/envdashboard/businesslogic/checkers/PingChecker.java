@@ -1,8 +1,12 @@
-package ro.cerner.envdashboard.businesslogic;
+package ro.cerner.envdashboard.businesslogic.checkers;
 
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+
+import ro.cerner.envdashboard.businesslogic.CheckResult;
+import ro.cerner.envdashboard.businesslogic.CheckStatus;
+import ro.cerner.envdashboard.businesslogic.Checker;
 
 public class PingChecker implements Checker {
 	
@@ -20,6 +24,8 @@ public class PingChecker implements Checker {
 		
 		CheckStatus status = CheckStatus.FAILURE;
 		
+		String message = "";
+		
 		InetAddress inet;
 
 	    try {
@@ -36,14 +42,14 @@ public class PingChecker implements Checker {
 				status = CheckStatus.SUCCESS;
 			}
 		} catch (UnknownHostException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			message = e.getMessage();
+			status = CheckStatus.FAILURE;
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			message = e.getMessage();
+			status = CheckStatus.FAILURE;
 		}
 	    
-	    return new CheckResult(status);
+	    return new CheckResult(status, message);
 	}
 	
 	public String getIp() {

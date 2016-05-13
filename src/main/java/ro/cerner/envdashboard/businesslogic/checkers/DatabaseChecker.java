@@ -1,8 +1,11 @@
-package ro.cerner.envdashboard.businesslogic;
+package ro.cerner.envdashboard.businesslogic.checkers;
 
-import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+
+import ro.cerner.envdashboard.businesslogic.CheckResult;
+import ro.cerner.envdashboard.businesslogic.CheckStatus;
+import ro.cerner.envdashboard.businesslogic.Checker;
 
 public class DatabaseChecker implements Checker {
 	
@@ -22,18 +25,19 @@ public class DatabaseChecker implements Checker {
 		
 		CheckStatus status = CheckStatus.FAILURE;
 		
+		String message = "";
+		
 		String url = "jdbc:sqlserver://"+serverName+":" + portNumber + ";databaseName=" + databaseName + ";";
 		
 		try {
 			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-			Connection conn = DriverManager.getConnection(url, userName, password);
+			DriverManager.getConnection(url, userName, password);
 			status = CheckStatus.SUCCESS;
 		} catch (SQLException | ClassNotFoundException e ) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			message = e.getMessage();
 			status = CheckStatus.FAILURE;
 		} 
-		return new CheckResult(status);
+		return new CheckResult(status, message);
 	}
 	
 	public DatabaseChecker(String serverName, String databaseName, String portNumber, String username,
