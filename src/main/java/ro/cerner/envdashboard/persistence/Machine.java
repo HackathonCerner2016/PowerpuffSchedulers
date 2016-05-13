@@ -1,4 +1,4 @@
-package ro.cerner.envdashboard.persistance;
+package ro.cerner.envdashboard.persistence;
 
 public class Machine {
 
