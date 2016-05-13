@@ -2,15 +2,14 @@ package ro.cerner.envdashboard;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Random;
 
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import ro.cerner.envdashboard.businesslogic.CheckResult;
 import ro.cerner.envdashboard.businesslogic.Checker;
+import ro.cerner.envdashboard.businesslogic.Environment;
 import ro.cerner.envdashboard.businesslogic.checkers.DatabaseChecker;
-import ro.cerner.envdashboard.businesslogic.checkers.DummyChecker;
 import ro.cerner.envdashboard.businesslogic.checkers.LoginSchedulingChecker;
 import ro.cerner.envdashboard.businesslogic.checkers.PingChecker;
 
@@ -24,7 +23,7 @@ public class ScheduledTasks {
         System.out.println("The time is now " + dateFormat.format(new Date()));
     }
     
-    @Scheduled(fixedRate = 5000)
+  /*  @Scheduled(fixedRate = 5000)
     public void runDummyChecker() {
         Random random = new Random();
         
@@ -33,7 +32,7 @@ public class ScheduledTasks {
         CheckResult checkResult = dummyChecker.check();
         
         System.out.println("DummyChecker.check() => " + checkResult);	
-    }
+    } 
     
     @Scheduled(fixedRate = 5000)
     public void runPingChecker() {
@@ -61,5 +60,27 @@ public class ScheduledTasks {
 		CheckResult checkResult = loginSchedulingChecker.check();
         
         System.out.println("LoginSchedulingChecker.check() => " + checkResult);	
+    } */
+    
+    @Scheduled(fixedRate = 5000)
+    public void runLEnvironmentCheckers() {
+        
+    	//get environment from UI
+    	Environment environment = new Environment(1, "SD", "Soarian Development Environment");
+    	
+    	//get list of checkers for environment from db
+    	
+    	Checker pingChecker = new PingChecker("usmlvv1srn284", "10.175.125.55");
+        Checker databaseChecker = new DatabaseChecker("USMLVV1SRN284", "SD_SCHDATA", "1433", "sa", "TEETIME@PEBBLEBEACH23");
+        Checker loginSchedulingChecker = new LoginSchedulingChecker("https://usmlvv1srn284.usmlvv1d0a.smshsc.net/sd/scheduling/security/Logon.pba", "test9", "test9");
+		
+		environment.getCheckersList().add(pingChecker);
+		environment.getCheckersList().add(databaseChecker);
+		environment.getCheckersList().add(loginSchedulingChecker);	
+		
+		CheckResult checkResult = environment.check();
+		
+		System.out.println(environment.getName() + " => " + checkResult);	
+		
     }
 }

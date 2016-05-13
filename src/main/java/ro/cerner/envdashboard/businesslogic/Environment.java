@@ -1,10 +1,12 @@
 package ro.cerner.envdashboard.businesslogic;
 
+import static ro.cerner.envdashboard.businesslogic.CheckStatus.FAILURE;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class Environment {
+public class Environment implements Checker{
 
 	private long id;
 	
@@ -15,7 +17,7 @@ public class Environment {
 	private Date lastChecked;
 	
 	//last status 
-	private CheckResult status;
+	private CheckResult lastCheckResult;
 	
 	private final List<Checker> checkersList = new ArrayList<>();
 	
@@ -25,7 +27,7 @@ public class Environment {
 		this.name = name;
 		this.description = description;
 		this.lastChecked = lastChecked;
-		this.status = status;
+		this.lastCheckResult = status;
 	}
 
 	public Environment(long id, String name, String description) {
@@ -56,12 +58,12 @@ public class Environment {
 		this.lastChecked = lastChecked;
 	}
 
-	public CheckResult getStatus() {
-		return status;
+	public CheckResult getLastCheckResult() {
+		return lastCheckResult;
 	}
 
-	public void setStatus(CheckResult status) {
-		this.status = status;
+	public void setLastCheckResult(CheckResult status) {
+		this.lastCheckResult = status;
 	}
 	
 	public List<Checker> getCheckersList() {
@@ -71,7 +73,27 @@ public class Environment {
 	@Override
 	public String toString() {
 		return "Environment [id=" + id + ", name=" + name + ", description=" + description + ", lastChecked="
-				+ lastChecked + ", status=" + status + "]";
+				+ lastChecked + ", lastCheckResult=" + lastCheckResult + "]";
+	}
+
+	@Override
+	public CheckResult check() {
+		
+		CheckStatus status = FAILURE;
+		
+		for(Checker checker : this.getCheckersList()){
+    		CheckResult checkResult = checker.check();
+    		
+    		//insert into db
+    		
+    		if(checkResult.status.equals(FAILURE)){
+    			lastCheckResult = new CheckResult(FAILURE, "At least one check failed!");
+    		}
+    	}
+		
+		
+		
+		return lastCheckResult;
 	}
 	
 }
