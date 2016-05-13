@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 import ro.cerner.envdashboard.businesslogic.CheckResult;
 import ro.cerner.envdashboard.businesslogic.Checker;
 import ro.cerner.envdashboard.businesslogic.DummyChecker;
+import ro.cerner.envdashboard.businesslogic.PingChecker;
 
 @Component
 public class ScheduledTasks {
@@ -30,5 +31,14 @@ public class ScheduledTasks {
         CheckResult checkResult = dummyChecker.check();
         
         System.out.println("DummyChecker.check() => " + checkResult);	
+    }
+    
+    @Scheduled(fixedRate = 5000)
+    public void runPingChecker() {
+        Checker pingChecker = new PingChecker("usmlvv1srn284", "10.175.125.55");
+        
+        CheckResult checkResult = pingChecker.check();
+        
+        System.out.println("PingChecker.check() => " + checkResult);	
     }
 }

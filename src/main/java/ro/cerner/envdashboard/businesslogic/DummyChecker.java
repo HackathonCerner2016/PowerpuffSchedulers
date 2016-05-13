@@ -15,7 +15,7 @@ public class DummyChecker implements Checker {
 	private boolean mokedResult =false;
 
 	@Override
-	public CheckResult check() {
+	public CheckResult check() { 
 		
 		if(mokedResult)
 		{
