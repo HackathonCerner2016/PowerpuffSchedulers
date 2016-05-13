@@ -24,17 +24,23 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 dependencies {
+
+    compile files('libs/sqljdbc42.jar')
+	
     // tag::jetty[]
     compile("org.springframework.boot:spring-boot-starter-web") {
         exclude module: "spring-boot-starter-tomcat"
     }
     compile("org.springframework.boot:spring-boot-starter-jetty")
     // end::jetty[]
+	
     // tag::actuator[]
     compile("org.springframework.boot:spring-boot-starter-actuator")
     // end::actuator[]
+	
     testCompile("junit:junit")
 }
+
 
 task wrapper(type: Wrapper) {
     gradleVersion = '2.3'
