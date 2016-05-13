@@ -1,6 +1,10 @@
-package ro.cerner.envdashboard.businesslogic;
+package ro.cerner.envdashboard.businesslogic.checkers;
 
 import static ro.cerner.envdashboard.businesslogic.CheckStatus.SUCCESS;
+
+import ro.cerner.envdashboard.businesslogic.CheckResult;
+import ro.cerner.envdashboard.businesslogic.CheckStatus;
+import ro.cerner.envdashboard.businesslogic.Checker;
 
 /**
  * @author ID041663
