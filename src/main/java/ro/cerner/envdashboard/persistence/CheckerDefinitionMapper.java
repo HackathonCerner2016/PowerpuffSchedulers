@@ -21,3 +21,4 @@ public class CheckerDefinitionMapper implements RowMapper<CheckerDefinition> {
 		return checkerDefinition;
 	}
 }
+ 

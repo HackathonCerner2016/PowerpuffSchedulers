@@ -21,7 +21,7 @@ public class CheckerDefinition {
 		this.fieldType = fieldType;
 		this.position = position;
 		this.checkerTypeId = checkerTypeId;
-	}
+	} 
 
 	public long getId() {
 		return this.id;

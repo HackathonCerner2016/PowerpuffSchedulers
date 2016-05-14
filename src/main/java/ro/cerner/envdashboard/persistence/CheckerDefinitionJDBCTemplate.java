@@ -15,9 +15,6 @@ public class CheckerDefinitionJDBCTemplate implements CheckerDefinitionDAO {
 	private DataSource dataSource;
 	private JdbcTemplate jdbcTemplateObject;
 	
-	
-
-	
 	@Override
 	public void setDataSource(DataSource ds) {
 		this.dataSource = ds;

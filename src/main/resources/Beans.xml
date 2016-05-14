@@ -32,7 +32,7 @@
    </bean>
    
     <!-- Definition for CheckerDefinitionJDBCTemplate bean -->
-   <bean id="CheckerDefinitionJDBCTemplate" 
+   <bean id="CheckerDefinitionJDBCTemplate"  
       class="ro.cerner.envdashboard.persistence.CheckerDefinitionJDBCTemplate">
       <property name="dataSource" ref="dataSource" />    
    </bean>

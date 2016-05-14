@@ -22,3 +22,4 @@ public interface CheckerDefinitionDAO {
 	public void update(Integer id, int fieldLength, String fieldName,
 			String fieldType, int position, long checkerTypeId);
 }
+ 
