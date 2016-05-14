@@ -8,6 +8,8 @@ import javax.sql.DataSource;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import ro.cerner.envdashboard.persistence.dao.EnvironmentDAO;
+import ro.cerner.envdashboard.persistence.mapper.CheckerRecord;
+import ro.cerner.envdashboard.persistence.mapper.CheckerRecordMapper;
 import ro.cerner.envdashboard.persistence.mapper.EnvironmentMapper;
 import ro.cerner.envdashboard.persistence.model.Environment;
  
@@ -36,6 +38,8 @@ public class EnvironmentJDBCTemplate implements EnvironmentDAO{
 		Environment environment = jdbcTemplateObject.queryForObject(SQL, new Object[] { id }, new EnvironmentMapper());
 		return environment;
 	}
+	
+	
 
 	@Override
 	public List<Environment> getEnvironments() {
@@ -56,6 +60,13 @@ public class EnvironmentJDBCTemplate implements EnvironmentDAO{
 		String SQL = "update Environment set Name = ?, Description = ?, LastChecked = ?, Status = ? where id = ?";
 		jdbcTemplateObject.update(SQL, name, description, lastChecked, status, id);
 		System.out.println("Updated Record with ID = " + id);
+	}
+
+	@Override
+	public List<CheckerRecord> getCheckersByEnvironmentId(Integer environmentId) {
+		String SQL = "select c.id, c.checkerTypeId, ct.name, c.environmentId, c.machineId from Checker c inner join CheckerType ct on ct.id = c.checkerTypeId where c.environmentId = ?";
+		List<CheckerRecord> environments = jdbcTemplateObject.query(SQL, new Object[] { environmentId }, new CheckerRecordMapper());
+		return environments;
 	}
 
 }
