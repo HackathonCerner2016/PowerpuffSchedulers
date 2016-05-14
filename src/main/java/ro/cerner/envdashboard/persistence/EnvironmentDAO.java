@@ -19,3 +19,4 @@ public interface EnvironmentDAO {
 
 	public void update(Integer id, String name, String description, Date lastChecked, Boolean status);
 }
+ 
