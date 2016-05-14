@@ -11,9 +11,6 @@ import ro.cerner.envdashboard.businesslogic.Checker;
 
 public class DatabaseChecker implements Checker {
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	private String serverName;

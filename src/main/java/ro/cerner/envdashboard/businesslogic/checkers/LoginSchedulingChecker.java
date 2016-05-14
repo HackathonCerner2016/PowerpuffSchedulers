@@ -18,9 +18,6 @@ import ro.cerner.envdashboard.businesslogic.Checker;
 import ro.cerner.envdashboard.businesslogic.TrustAllCertificatesManager;
 public class LoginSchedulingChecker implements Checker {
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 
