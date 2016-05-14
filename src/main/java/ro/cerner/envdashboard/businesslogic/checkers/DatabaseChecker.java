@@ -2,12 +2,15 @@ package ro.cerner.envdashboard.businesslogic.checkers;
 
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Value;
 
 import ro.cerner.envdashboard.businesslogic.CheckResult;
 import ro.cerner.envdashboard.businesslogic.CheckStatus;
 import ro.cerner.envdashboard.businesslogic.Checker;
+import ro.cerner.envdashboard.persistence.mapper.CheckerPropertiesRecord;
+import ro.cerner.envdashboard.persistence.mapper.CheckerRecord;
 
 public class DatabaseChecker implements Checker {
 	
@@ -57,6 +60,37 @@ public class DatabaseChecker implements Checker {
 	}
 	
 	public DatabaseChecker() {}
+
+	public DatabaseChecker(CheckerRecord checker) {
+		final String serverNameDb = "ServerName";
+		final String databaseNameDb = "DatabaseName";
+		final String portNumberDb = "PortNumber";
+		final String userNameDb = "UserName";
+		final String passwordDb = "Password";
+		
+		List<CheckerPropertiesRecord> checkerPropertiesRecordList = checker.getCheckerPropertiesRecordList();
+		
+		
+		for (CheckerPropertiesRecord checkerPropertiesRecord : checkerPropertiesRecordList) {
+			switch (checkerPropertiesRecord.getFieldName()) {
+			case (serverNameDb):
+				serverName = checkerPropertiesRecord.getFieldValue();
+				break;
+			case (databaseNameDb):
+				databaseName = checkerPropertiesRecord.getFieldValue();
+				break;
+			case (portNumberDb):
+				portNumber = checkerPropertiesRecord.getFieldValue();
+				break;
+			case (userNameDb):
+				userName = checkerPropertiesRecord.getFieldValue();
+				break;
+			case (passwordDb):
+				password = checkerPropertiesRecord.getFieldValue();
+				break;
+			}
+		}
+	}
 
 	@Override
 	public String getName() {

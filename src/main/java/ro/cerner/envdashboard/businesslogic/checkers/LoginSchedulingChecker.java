@@ -5,6 +5,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
+import java.util.List;
 
 import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLContext;
@@ -16,6 +17,8 @@ import ro.cerner.envdashboard.businesslogic.CheckResult;
 import ro.cerner.envdashboard.businesslogic.CheckStatus;
 import ro.cerner.envdashboard.businesslogic.Checker;
 import ro.cerner.envdashboard.businesslogic.TrustAllCertificatesManager;
+import ro.cerner.envdashboard.persistence.mapper.CheckerPropertiesRecord;
+import ro.cerner.envdashboard.persistence.mapper.CheckerRecord;
 
 public class LoginSchedulingChecker implements Checker {
 	
@@ -50,6 +53,29 @@ public class LoginSchedulingChecker implements Checker {
 	}
 	
 	public LoginSchedulingChecker() {}
+
+	public LoginSchedulingChecker(CheckerRecord checker) {
+		final String urlDb = "URL";
+		final String userNameDb = "UserName";
+		final String passwordDb = "Password";
+		
+		List<CheckerPropertiesRecord> checkerPropertiesRecordList = checker.getCheckerPropertiesRecordList();
+		
+		
+		for (CheckerPropertiesRecord checkerPropertiesRecord : checkerPropertiesRecordList) {
+			switch (checkerPropertiesRecord.getFieldName()) {
+			case (urlDb):
+				url = checkerPropertiesRecord.getFieldValue();
+				break;
+			case (userNameDb):
+				username = checkerPropertiesRecord.getFieldValue();
+				break;
+			case (passwordDb):
+				password = checkerPropertiesRecord.getFieldValue();
+				break;
+			}
+		}
+	}
 
 	@Override
 	public CheckResult check() {
