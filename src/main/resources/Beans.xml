@@ -37,4 +37,10 @@
       <property name="dataSource" ref="dataSource" />    
    </bean>
    
+   <!-- Definition for CheckerResultJDBCTemplate bean -->
+   <bean id="CheckerResultJDBCTemplate"  
+      class="ro.cerner.envdashboard.persistence.CheckerResultJDBCTemplate">
+      <property name="dataSource" ref="dataSource" />    
+   </bean>
+   
 </beans>
