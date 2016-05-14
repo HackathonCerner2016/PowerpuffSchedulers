@@ -17,7 +17,14 @@ public class EnvironmentMapper implements RowMapper<Environment> {
 		environment.setName(rs.getString("Name"));
 		environment.setDescription(rs.getString("Description"));
 		environment.setLastChecked(new Date(rs.getTimestamp("LastChecked").getTime()));
-		environment.setStatus(rs.getBoolean("Status"));
+		String status = rs.getString("Status");
+		Boolean b = null;
+		if ("1".equals(status)) { 
+			b = Boolean.TRUE;
+		} else if ("0".equals(status)) { 
+			b = Boolean.FALSE;
+		}
+		environment.setStatus(b);
 		return environment;
 	}
 

@@ -27,6 +27,8 @@ public interface EnvironmentDAO {
 	public List<CheckerRecord> getCheckersByEnvironmentId(Integer environmentId);
 	
 	public List<CheckerPropertiesRecord> getCheckersPropertiesByCheckerIds(String checkerIds);
+	
+	public void updateEnvironmentStatus(Integer environmentId, Boolean status);
 
 }
  

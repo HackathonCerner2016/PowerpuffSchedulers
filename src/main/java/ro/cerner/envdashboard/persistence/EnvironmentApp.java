@@ -46,5 +46,7 @@ public class EnvironmentApp {
 				System.out.println("Position : " + checkerPropertiesRecord.getPosition());
 			}
 		}
+		
+		environmentJDBCTemplate.updateEnvironmentStatus(1, false);
 	}
 }

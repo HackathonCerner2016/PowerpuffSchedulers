@@ -36,7 +36,7 @@ public class EnvironmentJDBCTemplate implements EnvironmentDAO{
 
 	@Override
 	public Environment getEnvironment(Integer id) {
-		String SQL = "select * from Environment where Id = ?";
+		String SQL = "select id, name, description, lastchecked, CONVERT(varchar(10), status) as status from Environment where Id = ?";
 		Environment environment = jdbcTemplateObject.queryForObject(SQL, new Object[] { id }, new EnvironmentMapper());
 		return environment;
 	}
@@ -45,7 +45,7 @@ public class EnvironmentJDBCTemplate implements EnvironmentDAO{
 
 	@Override
 	public List<Environment> getEnvironments() {
-		String SQL = "select * from Environment";
+		String SQL = "select id, name, description, lastchecked, CONVERT(varchar(10), status) as status from Environment";
 		List<Environment> environments = jdbcTemplateObject.query(SQL, new EnvironmentMapper());
 		return environments;
 	}
@@ -81,6 +81,13 @@ public class EnvironmentJDBCTemplate implements EnvironmentDAO{
 		String SQL = "select cd.id, cd.checkerDefinitionId, cdef.fieldName, cd.fieldValue, cdef.position from checkerDetails cd inner join checkerDefinition cdef on cd.checkerDefinitionId = cdef.id where cd.checkerId = ? order by cd.id";
 		List<CheckerPropertiesRecord> environments = jdbcTemplateObject.query(SQL, new Object[] { checkerId }, new CheckerPropertiesRecordMapper());
 		return environments;
+	}
+
+	@Override
+	public void updateEnvironmentStatus(Integer environmentId, Boolean status) {
+		String SQL = "update Environment set LastChecked = GETDATE(), Status = ? where id = ?";
+		jdbcTemplateObject.update(SQL, status, environmentId);
+		System.out.println("Updated Record with ID = " + environmentId);
 	}
 
 }
