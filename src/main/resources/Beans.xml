@@ -25,10 +25,16 @@
       <property name="dataSource" ref="dataSource" />    
    </bean>
    
-    <!-- Definition for environmentJDBCTemplate bean -->
+    <!-- Definition for CheckerJDBCTemplate bean -->
    <bean id="CheckerJDBCTemplate" 
       class="ro.cerner.envdashboard.persistence.CheckerJDBCTemplate">
       <property name="dataSource" ref="dataSource" />    
    </bean>
-
+   
+    <!-- Definition for CheckerDefinitionJDBCTemplate bean -->
+   <bean id="CheckerDefinitionJDBCTemplate"  
+      class="ro.cerner.envdashboard.persistence.CheckerDefinitionJDBCTemplate">
+      <property name="dataSource" ref="dataSource" />    
+   </bean>
+   
 </beans>

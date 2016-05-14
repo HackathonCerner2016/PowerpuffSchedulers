@@ -12,9 +12,6 @@ import ro.cerner.envdashboard.businesslogic.Checker;
 
 public class PingChecker implements Checker {
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -1922941140357964169L;
 
 	private String ip;

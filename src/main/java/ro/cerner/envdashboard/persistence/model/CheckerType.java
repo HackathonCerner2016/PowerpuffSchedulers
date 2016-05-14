@@ -5,11 +5,16 @@ import java.util.List;
 public class CheckerType {
 	
 	private long id;
-	private Object name;
+	private String name;
 	private List<CheckerDefinition> checkerDefinitions;
 	private List<Checker> checkers;
 
 	public CheckerType() {
+	}
+	
+	public CheckerType(long id, String name) {
+		this.id = id;
+		this.name = name;
 	}
 
 	public long getId() {
@@ -20,11 +25,11 @@ public class CheckerType {
 		this.id = id;
 	}
 
-	public Object getName() {
+	public String getName() {
 		return this.name;
 	}
 
-	public void setName(Object name) {
+	public void setName(String name) {
 		this.name = name;
 	}
 

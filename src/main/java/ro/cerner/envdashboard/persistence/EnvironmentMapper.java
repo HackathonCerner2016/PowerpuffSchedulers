@@ -1,5 +1,6 @@
 package ro.cerner.envdashboard.persistence;
 
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -13,7 +14,7 @@ public class EnvironmentMapper implements RowMapper<Environment> {
 		environment.setId(rs.getInt("Id"));
 		environment.setName(rs.getString("Name"));
 		environment.setDescription(rs.getString("Description"));
-		environment.setLastChecked(rs.getDate("LastChecked"));
+		environment.setLastChecked(new Date(rs.getTimestamp("LastChecked").getTime()));
 		environment.setStatus(rs.getBoolean("Status"));
 		return environment;
 	}
