@@ -10,17 +10,41 @@ import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManager;
 
+import org.springframework.beans.factory.annotation.Value;
+
 import ro.cerner.envdashboard.businesslogic.CheckResult;
 import ro.cerner.envdashboard.businesslogic.CheckStatus;
 import ro.cerner.envdashboard.businesslogic.Checker;
 import ro.cerner.envdashboard.businesslogic.TrustAllCertificatesManager;
 public class LoginSchedulingChecker implements Checker {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+
+	public String getUrl() {
+		return url;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
 	private String url;
 	
 	private String username;
 	
 	private String password;
+	
+	@Value("${checker.login.name}")
+	private String name;
+	
 	
 	public LoginSchedulingChecker(String url, String username, String password) {
 		super();
@@ -68,6 +92,11 @@ public class LoginSchedulingChecker implements Checker {
 			
 			
 		return new CheckResult(status, message);
+	}
+
+	@Override
+	public String getName() {
+		return name;
 	}
 	
 }

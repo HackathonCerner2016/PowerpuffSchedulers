@@ -3,12 +3,19 @@ package ro.cerner.envdashboard.businesslogic.checkers;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+import org.springframework.beans.factory.annotation.Value;
+
 import ro.cerner.envdashboard.businesslogic.CheckResult;
 import ro.cerner.envdashboard.businesslogic.CheckStatus;
 import ro.cerner.envdashboard.businesslogic.Checker;
 
 public class DatabaseChecker implements Checker {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	private String serverName;
 	
 	private String databaseName;
@@ -19,7 +26,9 @@ public class DatabaseChecker implements Checker {
 	
 	private String password;
 	
-
+	@Value("${checker.database.name}")
+	private String name;
+	
 	@Override
 	public CheckResult check() {
 		
@@ -48,6 +57,12 @@ public class DatabaseChecker implements Checker {
 		this.portNumber = portNumber;
 		this.userName = username;
 		this.password = password;
+	}
+
+	@Override
+	public String getName() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

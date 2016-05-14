@@ -1,5 +1,10 @@
 package ro.cerner.envdashboard.businesslogic;
 
-public interface Checker {
+import java.io.Serializable;
+
+public interface Checker extends Serializable{
+	
+	String getName();
+	
     CheckResult check();
 }
