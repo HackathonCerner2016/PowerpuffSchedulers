@@ -13,10 +13,17 @@
       <property name="password" value="Nursing1!"/>
    </bean>
 
-   <!-- Definition for studentJDBCTemplate bean -->
+   <!-- Definition for machineJDBCTemplate bean -->
    <bean id="MachineJDBCTemplate" 
-      class="ro.cerner.envdashboard.persistance.MachineJDBCTemplate">
+      class="ro.cerner.envdashboard.persistence.MachineJDBCTemplate">
       <property name="dataSource" ref="dataSource" />    
    </bean>
-      
+   
+   <!-- Definition for environmentJDBCTemplate bean -->
+   <bean id="EnvironmentJDBCTemplate" 
+      class="ro.cerner.envdashboard.persistence.EnvironmentJDBCTemplate">
+      <property name="dataSource" ref="dataSource" />    
+   </bean>
+   
+   
 </beans>
