@@ -1,39 +1,26 @@
 package ro.cerner.envdashboard.persistence.model;
 
-import java.io.Serializable;
-import javax.persistence.*;
+public class Checker {
 
-
-/**
- * The persistent class for the ToBeRenamedChecker database table.
- * 
- */
-@Entity
-@NamedQuery(name="Checker.findAll", query="SELECT t FROM Checker t")
-public class Checker implements Serializable {
-	private static final long serialVersionUID = 1L;
-
-	@Id
-	@Column(name="Id")
 	private long id;
-
-	//bi-directional many-to-one association to CheckerType
-	@ManyToOne
-	@JoinColumn(name="CheckerTypeId")
-	private CheckerType checkerType;
-
-	//bi-directional many-to-one association to Environment
-	@ManyToOne
-	@JoinColumn(name="EnvironmentId")
-	private Environment environment;
-
-	//bi-directional many-to-one association to Machine
-	@ManyToOne
-	@JoinColumn(name="MachineId")
-	private Machine machine;
+	private long checkerTypeId;
+	private long environmentId;
+	private long machineId;
 	
 	public Checker() {
 	}
+	
+	
+
+	public Checker(long checkerTypeId, long environmentId,
+			long machineId) {
+		super();
+		this.checkerTypeId = checkerTypeId;
+		this.environmentId = environmentId;
+		this.machineId = machineId;
+	}
+
+
 
 	public long getId() {
 		return this.id;
@@ -43,28 +30,28 @@ public class Checker implements Serializable {
 		this.id = id;
 	}
 
-	public CheckerType getCheckerType() {
-		return this.checkerType;
+	public long getCheckerTypeId() {
+		return checkerTypeId;
 	}
 
-	public void setCheckerType(CheckerType checkerType) {
-		this.checkerType = checkerType;
+	public void setCheckerTypeId(long checkerTypeId) {
+		this.checkerTypeId = checkerTypeId;
 	}
 
-	public Environment getEnvironment() {
-		return this.environment;
+	public long getEnvironmentId() {
+		return environmentId;
 	}
 
-	public void setEnvironment(Environment environment) {
-		this.environment = environment;
+	public void setEnvironmentId(long environmentId) {
+		this.environmentId = environmentId;
 	}
 
-	public Machine getMachine() {
-		return this.machine;
+	public long getMachineId() {
+		return machineId;
 	}
 
-	public void setMachine(Machine machine) {
-		this.machine = machine;
+	public void setMachineId(long machineId) {
+		this.machineId = machineId;
 	}
 
 }
