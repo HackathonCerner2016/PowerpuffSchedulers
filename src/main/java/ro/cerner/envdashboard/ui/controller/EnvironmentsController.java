@@ -38,7 +38,7 @@ public class EnvironmentsController {
 	}
 	
 	@RequestMapping("/environmentCheckers")
-	public List<Environment> getEnvironmentCheckersStatus(){
+	public Map<Integer, CheckResult> getEnvironmentCheckersStatus(){
   	    
 		@SuppressWarnings("resource")
 		ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
@@ -63,6 +63,6 @@ public class EnvironmentsController {
 				
 			}
 		}
-  	    return null; 
+  	    return envCheckerStatus; 
 	}
 }
