@@ -26,6 +26,7 @@ targetCompatibility = 1.8
 dependencies {
 
     compile files('libs/sqljdbc42.jar')
+    compile files('libs/javax.persistence.jar')
     compile("org.springframework:spring-jdbc")
 	
     // tag::jetty[]
@@ -39,10 +40,6 @@ dependencies {
     compile("org.springframework.boot:spring-boot-starter-actuator")
     // end::actuator[]
     
-    // tag::jpa[]
-    compile("org.springframework.boot:spring-boot-starter-data-jpa")
-	// tag::end[]
-	
     testCompile("junit:junit")
 }
 
