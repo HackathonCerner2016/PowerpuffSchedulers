@@ -4,15 +4,26 @@ import java.io.IOException;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 
+import org.springframework.beans.factory.annotation.Value;
+
 import ro.cerner.envdashboard.businesslogic.CheckResult;
 import ro.cerner.envdashboard.businesslogic.CheckStatus;
 import ro.cerner.envdashboard.businesslogic.Checker;
 
 public class PingChecker implements Checker {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1922941140357964169L;
+
 	private String ip;
 	
 	private String hostname;
+	
+	@Value("${checker.ping.name}")
+	private String name;
+	
 	
 	public PingChecker(String ip, String hostname) {
 		this.ip = ip;
@@ -58,6 +69,12 @@ public class PingChecker implements Checker {
 
 	public String getHostname() {
 		return hostname;
+	}
+
+	@Override
+	public String getName() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 
