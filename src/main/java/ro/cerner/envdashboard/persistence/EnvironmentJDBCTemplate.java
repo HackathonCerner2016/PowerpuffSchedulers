@@ -21,14 +21,16 @@ public class EnvironmentJDBCTemplate implements EnvironmentDAO{
 
 	@Override
 	public void create(String name, String description, Date lastChecked, Boolean status) {
-		// TODO Auto-generated method stub
-		
+		String SQL = "insert into Environment (Name, Description, LastChecked, Status) values (?, ?, ?, ?)";
+		jdbcTemplateObject.update(SQL, name, description, lastChecked, status);
+		System.out.println("Created Record Name = " + name + " Description = " + description + " LastChecked = " + lastChecked + " Status = " + status);
 	}
 
 	@Override
 	public Environment getEnvironment(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+		String SQL = "select * from Environment where Id = ?";
+		Environment environment = jdbcTemplateObject.queryForObject(SQL, new Object[] { id }, new EnvironmentMapper());
+		return environment;
 	}
 
 	@Override
@@ -40,14 +42,16 @@ public class EnvironmentJDBCTemplate implements EnvironmentDAO{
 
 	@Override
 	public void delete(Integer id) {
-		// TODO Auto-generated method stub
-		
+		String SQL = "delete from Environment where id = ?";
+		jdbcTemplateObject.update(SQL, id);
+		System.out.println("Deleted Record with ID = " + id);
 	}
 
 	@Override
 	public void update(Integer id, String name, String description, Date lastChecked, Boolean status) {
-		// TODO Auto-generated method stub
-		
+		String SQL = "update Environment set Name = ?, Description = ?, LastChecked = ?, Status = ? where id = ?";
+		jdbcTemplateObject.update(SQL, name, description, lastChecked, status, id);
+		System.out.println("Updated Record with ID = " + id);
 	}
 
 }
