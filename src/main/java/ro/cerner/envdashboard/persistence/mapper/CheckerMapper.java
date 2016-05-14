@@ -18,4 +18,6 @@ public class CheckerMapper implements RowMapper<Checker> {
 		checker.setMachineId(rs.getInt("MachineId"));
 		return checker;
 	}
+	
+	
 }
