@@ -1,6 +1,8 @@
 package ro.cerner.envdashboard.ui.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -42,6 +44,8 @@ public class EnvironmentsController {
 		ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
 
 		 EnvironmentDAO environmentDAO = (EnvironmentJDBCTemplate) context.getBean("EnvironmentJDBCTemplate");
+		 
+		 Map<Integer, CheckResult> envCheckerStatus = new HashMap<Integer, CheckResult>();
 		
     	//get list of environments from db
   	    List<ro.cerner.envdashboard.persistence.model.Environment> listOfEnvironments = environmentDAO.getEnvironments();
@@ -49,14 +53,16 @@ public class EnvironmentsController {
   	    //call execute env checkers for each of them
 		for (ro.cerner.envdashboard.persistence.model.Environment environment : listOfEnvironments) {
 			List<CheckerRecord> envCheckersList = environmentDAO.getCheckersByEnvironmentId(environment.getId());
-
+			
 			for (CheckerRecord checkerRecord : envCheckersList) {
 				Checker checker = Checkers.getChecker(checkerRecord);
 				
 				CheckResult result = checker.check();
+				
+				envCheckerStatus.put(checker.getId(), result);
+				
 			}
 		}
-  	    //System.out.println("getEnvironmentsStatus " + listOfEnvironments.size());
   	    return null; 
 	}
 }

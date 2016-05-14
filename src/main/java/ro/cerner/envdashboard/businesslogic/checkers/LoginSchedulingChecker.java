@@ -23,6 +23,8 @@ import ro.cerner.envdashboard.persistence.mapper.CheckerRecord;
 public class LoginSchedulingChecker implements Checker {
 	
 	private static final long serialVersionUID = 1L;
+	
+	private Integer id;
 
 	private String url;
 	
@@ -45,6 +47,8 @@ public class LoginSchedulingChecker implements Checker {
 		return password;
 	}
 	
+	public LoginSchedulingChecker(Integer id) {this.id = id;}
+	
 	public LoginSchedulingChecker(String url, String username, String password) {
 		super();
 		this.url = url;
@@ -58,6 +62,8 @@ public class LoginSchedulingChecker implements Checker {
 		final String urlDb = "URL";
 		final String userNameDb = "UserName";
 		final String passwordDb = "Password";
+		
+		this.id = checker.getId();
 		
 		List<CheckerPropertiesRecord> checkerPropertiesRecordList = checker.getCheckerPropertiesRecordList();
 		
@@ -114,12 +120,20 @@ public class LoginSchedulingChecker implements Checker {
 				status = CheckStatus.FAILURE;
 			}
 			
-		return new CheckResult(status, message);
+		return new CheckResult(status, message, name);
 	}
 
 	@Override
 	public String getName() {
 		return name;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
 	
 }

@@ -8,7 +8,7 @@ import java.util.List;
 
 public class Environment implements Checker{
 
-	private long id;
+	private Integer id;
 	
 	private String name;
 	
@@ -21,7 +21,7 @@ public class Environment implements Checker{
 	
 	private final List<Checker> checkersList = new ArrayList<>();
 	
-	public Environment(long id, String name, String description, Date lastChecked, CheckResult status) {
+	public Environment(Integer id, String name, String description, Date lastChecked, CheckResult status) {
 		this.id = id;
 		this.name = name;
 		this.description = description;
@@ -29,7 +29,7 @@ public class Environment implements Checker{
 		this.lastCheckResult = status;
 	}
 
-	public Environment(long id, String name, String description) {
+	public Environment(Integer id, String name, String description) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -37,7 +37,7 @@ public class Environment implements Checker{
 	}
 
 	
-	public Environment(long id, String name, String description, Date lastChecked, Boolean status) {
+	public Environment(Integer id, String name, String description, Date lastChecked, Boolean status) {
 		this.id = id;
 		this.name = name;
 		this.description = description;
@@ -52,7 +52,7 @@ public class Environment implements Checker{
 		return new CheckResult(CheckStatus.FAILURE);
 	}
 
-	public long getId() {
+	public Integer getId() {
 		return id;
 	}
 

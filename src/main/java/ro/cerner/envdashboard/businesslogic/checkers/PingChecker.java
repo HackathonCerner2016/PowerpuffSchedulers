@@ -16,6 +16,8 @@ import ro.cerner.envdashboard.persistence.mapper.CheckerRecord;
 public class PingChecker implements Checker {
 	
 	private static final long serialVersionUID = -1922941140357964169L;
+	
+	private Integer id;
 
 	private String ipHostname;
 	
@@ -28,10 +30,14 @@ public class PingChecker implements Checker {
 	}
 	
 	public PingChecker() {}
+	
+	public PingChecker(Integer id) {this.id = id;}
 
 	public PingChecker(CheckerRecord checker) {
 		
 		String ipHostName = "IPHostName";
+		
+		this.id = checker.getId();
 		
 		List<CheckerPropertiesRecord> checkerPropertiesRecordList = checker.getCheckerPropertiesRecordList();
 		
@@ -73,7 +79,7 @@ public class PingChecker implements Checker {
 			status = CheckStatus.FAILURE;
 		}
 	    
-	    return new CheckResult(status, message);
+	    return new CheckResult(status, message, name);
 	}
 	
 	public String getIpHostname() {
@@ -83,6 +89,14 @@ public class PingChecker implements Checker {
 	@Override
 	public String getName() {
 		return name;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 

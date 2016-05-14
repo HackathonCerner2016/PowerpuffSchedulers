@@ -99,4 +99,10 @@ public class WindowsServiceChecker implements Checker {
         return serviceName;
     }
 
+	@Override
+	public Integer getId() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

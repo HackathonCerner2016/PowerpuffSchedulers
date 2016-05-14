@@ -15,6 +15,8 @@ import ro.cerner.envdashboard.persistence.mapper.CheckerRecord;
 public class DatabaseChecker implements Checker {
 	
 	private static final long serialVersionUID = 1L;
+	
+	private Integer id;
 
 	private String serverName;
 	
@@ -28,6 +30,8 @@ public class DatabaseChecker implements Checker {
 	
 	@Value("${checker.database.name}")
 	private String name;
+	
+	public DatabaseChecker(Integer id) {this.id = id;}
 	
 	@Override
 	public CheckResult check() {
@@ -46,7 +50,7 @@ public class DatabaseChecker implements Checker {
 			message = e.getMessage();
 			status = CheckStatus.FAILURE;
 		} 
-		return new CheckResult(status, message);
+		return new CheckResult(status, message, name);
 	}
 	
 	public DatabaseChecker(String serverName, String databaseName, String portNumber, String username,
@@ -67,6 +71,8 @@ public class DatabaseChecker implements Checker {
 		final String portNumberDb = "PortNumber";
 		final String userNameDb = "UserName";
 		final String passwordDb = "Password";
+		
+		this.id = checker.getId();
 		
 		List<CheckerPropertiesRecord> checkerPropertiesRecordList = checker.getCheckerPropertiesRecordList();
 		
@@ -96,6 +102,14 @@ public class DatabaseChecker implements Checker {
 	public String getName() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 }
