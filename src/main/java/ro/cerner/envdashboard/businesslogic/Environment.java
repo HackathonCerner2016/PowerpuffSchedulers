@@ -22,7 +22,6 @@ public class Environment implements Checker{
 	private final List<Checker> checkersList = new ArrayList<>();
 	
 	public Environment(long id, String name, String description, Date lastChecked, CheckResult status) {
-		super();
 		this.id = id;
 		this.name = name;
 		this.description = description;
@@ -38,6 +37,21 @@ public class Environment implements Checker{
 	}
 
 	
+	public Environment(long id, String name, String description, Date lastChecked, Boolean status) {
+		this.id = id;
+		this.name = name;
+		this.description = description;
+		this.lastChecked = lastChecked;
+		this.lastCheckResult = getCheckResultFromStatus(status);
+	}
+	
+	public CheckResult getCheckResultFromStatus(Boolean status){
+		if(status){
+			return new CheckResult(CheckStatus.SUCCESS);
+		 }
+		return new CheckResult(CheckStatus.FAILURE);
+	}
+
 	public long getId() {
 		return id;
 	}

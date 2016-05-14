@@ -29,6 +29,12 @@ public class PingChecker implements Checker {
 		this.ip = ip;
 		this.hostname = hostname;
 	}
+	
+	public PingChecker(String hostname) {
+		this.hostname = hostname;
+	}
+	
+	public PingChecker() {}
 
 	@Override
 	public CheckResult check() {

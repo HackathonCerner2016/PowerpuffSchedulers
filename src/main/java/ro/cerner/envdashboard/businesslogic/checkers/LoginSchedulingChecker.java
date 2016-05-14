@@ -16,14 +16,20 @@ import ro.cerner.envdashboard.businesslogic.CheckResult;
 import ro.cerner.envdashboard.businesslogic.CheckStatus;
 import ro.cerner.envdashboard.businesslogic.Checker;
 import ro.cerner.envdashboard.businesslogic.TrustAllCertificatesManager;
+
 public class LoginSchedulingChecker implements Checker {
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
-
+	private String url;
+	
+	private String username;
+	
+	private String password;
+	
+	@Value("${checker.login.name}")
+	private String name;
+	
 	public String getUrl() {
 		return url;
 	}
@@ -35,16 +41,6 @@ public class LoginSchedulingChecker implements Checker {
 	public String getPassword() {
 		return password;
 	}
-
-	private String url;
-	
-	private String username;
-	
-	private String password;
-	
-	@Value("${checker.login.name}")
-	private String name;
-	
 	
 	public LoginSchedulingChecker(String url, String username, String password) {
 		super();
@@ -52,6 +48,8 @@ public class LoginSchedulingChecker implements Checker {
 		this.username = username;
 		this.password = password;
 	}
+	
+	public LoginSchedulingChecker() {}
 
 	@Override
 	public CheckResult check() {
@@ -89,7 +87,6 @@ public class LoginSchedulingChecker implements Checker {
 				message = e.getMessage();
 				status = CheckStatus.FAILURE;
 			}
-			
 			
 		return new CheckResult(status, message);
 	}

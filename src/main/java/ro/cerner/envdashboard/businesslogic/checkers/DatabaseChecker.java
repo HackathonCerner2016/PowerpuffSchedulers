@@ -58,6 +58,8 @@ public class DatabaseChecker implements Checker {
 		this.userName = username;
 		this.password = password;
 	}
+	
+	public DatabaseChecker() {}
 
 	@Override
 	public String getName() {

@@ -7,4 +7,6 @@ public interface Checker extends Serializable{
 	String getName();
 	
     CheckResult check();
+    
+    
 }
