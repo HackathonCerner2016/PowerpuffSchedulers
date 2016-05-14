@@ -6,7 +6,7 @@ import javax.sql.DataSource;
 
 public interface MachineDAO {
 
-	public void setDataSource(DataSource ds);
+	public void setDataSource(DataSource dataSource);
 
 	public void create(String name, String IP, String gateway);
 

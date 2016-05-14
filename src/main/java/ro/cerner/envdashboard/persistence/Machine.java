@@ -1,5 +1,6 @@
 package ro.cerner.envdashboard.persistence;
 
+
 public class Machine {
 
 	private Integer id;

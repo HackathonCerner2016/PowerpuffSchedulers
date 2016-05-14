@@ -1,7 +1,7 @@
 package ro.cerner.envdashboard.persistence;
 
 import java.util.Date;
- 
+
 public class Environment {
 
 	private Integer id;
