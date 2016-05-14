@@ -15,31 +15,31 @@
 
    <!-- Definition for machineJDBCTemplate bean -->
    <bean id="MachineJDBCTemplate" 
-      class="ro.cerner.envdashboard.persistence.MachineJDBCTemplate">
+      class="ro.cerner.envdashboard.persistence.jdbc.MachineJDBCTemplate">
       <property name="dataSource" ref="dataSource" />    
    </bean>
    
    <!-- Definition for environmentJDBCTemplate bean -->
    <bean id="EnvironmentJDBCTemplate" 
-      class="ro.cerner.envdashboard.persistence.EnvironmentJDBCTemplate">
+      class="ro.cerner.envdashboard.persistence.jdbc.EnvironmentJDBCTemplate">
       <property name="dataSource" ref="dataSource" />    
    </bean>
    
     <!-- Definition for CheckerJDBCTemplate bean -->
    <bean id="CheckerJDBCTemplate" 
-      class="ro.cerner.envdashboard.persistence.CheckerJDBCTemplate">
+      class="ro.cerner.envdashboard.persistence.jdbc.CheckerJDBCTemplate">
       <property name="dataSource" ref="dataSource" />    
    </bean>
    
     <!-- Definition for CheckerDefinitionJDBCTemplate bean -->
    <bean id="CheckerDefinitionJDBCTemplate"  
-      class="ro.cerner.envdashboard.persistence.CheckerDefinitionJDBCTemplate">
+      class="ro.cerner.envdashboard.persistence.jdbc.CheckerDefinitionJDBCTemplate">
       <property name="dataSource" ref="dataSource" />    
    </bean>
    
    <!-- Definition for CheckerResultJDBCTemplate bean -->
    <bean id="CheckerResultJDBCTemplate"  
-      class="ro.cerner.envdashboard.persistence.CheckerResultJDBCTemplate">
+      class="ro.cerner.envdashboard.persistence.jdbc.CheckerResultJDBCTemplate">
       <property name="dataSource" ref="dataSource" />    
    </bean>
    

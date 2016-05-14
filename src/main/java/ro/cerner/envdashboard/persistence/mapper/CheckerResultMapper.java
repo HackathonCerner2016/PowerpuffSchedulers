@@ -1,4 +1,4 @@
-package ro.cerner.envdashboard.persistence;
+package ro.cerner.envdashboard.persistence.mapper;
 
 import java.sql.Date;
 import java.sql.ResultSet;

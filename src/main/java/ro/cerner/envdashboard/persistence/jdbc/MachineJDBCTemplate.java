@@ -1,10 +1,14 @@
-package ro.cerner.envdashboard.persistence;
+package ro.cerner.envdashboard.persistence.jdbc;
 
 import java.util.List;
 
 import javax.sql.DataSource;
 
 import org.springframework.jdbc.core.JdbcTemplate;
+
+import ro.cerner.envdashboard.persistence.dao.MachineDAO;
+import ro.cerner.envdashboard.persistence.mapper.MachineMapper;
+import ro.cerner.envdashboard.persistence.model.Machine;
 
 
 public class MachineJDBCTemplate implements MachineDAO {
