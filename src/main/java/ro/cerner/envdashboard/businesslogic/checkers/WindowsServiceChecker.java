@@ -1,6 +1,9 @@
-package ro.cerner.envdashboard.businesslogic;
+package ro.cerner.envdashboard.businesslogic.checkers;
 
 import org.springframework.beans.factory.annotation.Value;
+
+import ro.cerner.envdashboard.businesslogic.CheckResult;
+import ro.cerner.envdashboard.businesslogic.Checker;
 
 public class WindowsServiceChecker implements Checker {
 

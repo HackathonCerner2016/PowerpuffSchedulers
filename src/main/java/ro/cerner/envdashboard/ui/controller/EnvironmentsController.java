@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RestController;
 import ro.cerner.envdashboard.persistence.Environment;
 import ro.cerner.envdashboard.persistence.EnvironmentDAO;
 import ro.cerner.envdashboard.persistence.EnvironmentJDBCTemplate;
-import ro.cerner.envdashboard.persistence.model.Checker;
 
 @RestController
 public class EnvironmentsController {
