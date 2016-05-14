@@ -1,46 +1,27 @@
 package ro.cerner.envdashboard.persistence.model;
 
-import java.io.Serializable;
-import javax.persistence.*;
-import java.util.List;
 
+public class CheckerDefinition {
 
-/**
- * The persistent class for the CheckerDefinition database table.
- * 
- */
-@Entity
-@NamedQuery(name="CheckerDefinition.findAll", query="SELECT c FROM CheckerDefinition c")
-public class CheckerDefinition implements Serializable {
-	private static final long serialVersionUID = 1L;
-
-	@Id
-	@Column(name="Id")
 	private long id;
-
-	@Column(name="FieldLength")
 	private int fieldLength;
-
-	@Column(name="FieldName")
-	private Object fieldName;
-
-	@Column(name="FieldType")
-	private Object fieldType;
-
-	@Column(name="Position")
+	private String fieldName;
+	private String fieldType;
 	private int position;
-
-	//bi-directional many-to-one association to CheckerType
-	@ManyToOne
-	@JoinColumn(name="CheckerTypeId")
-	private CheckerType checkerType;
-
-	//bi-directional many-to-one association to CheckerDetails1
-	@OneToMany(mappedBy="checkerDefinition")
-	private List<CheckerDetails> checkerDetails;
+	private long checkerTypeId;
 
 	public CheckerDefinition() {
 	}
+
+	public CheckerDefinition(int fieldLength, String fieldName,
+			String fieldType, int position, long checkerTypeId) {
+		super();
+		this.fieldLength = fieldLength;
+		this.fieldName = fieldName;
+		this.fieldType = fieldType;
+		this.position = position;
+		this.checkerTypeId = checkerTypeId;
+	} 
 
 	public long getId() {
 		return this.id;
@@ -58,19 +39,19 @@ public class CheckerDefinition implements Serializable {
 		this.fieldLength = fieldLength;
 	}
 
-	public Object getFieldName() {
+	public String getFieldName() {
 		return this.fieldName;
 	}
 
-	public void setFieldName(Object fieldName) {
+	public void setFieldName(String fieldName) {
 		this.fieldName = fieldName;
 	}
 
-	public Object getFieldType() {
+	public String getFieldType() {
 		return this.fieldType;
 	}
 
-	public void setFieldType(Object fieldType) {
+	public void setFieldType(String fieldType) {
 		this.fieldType = fieldType;
 	}
 
@@ -82,34 +63,12 @@ public class CheckerDefinition implements Serializable {
 		this.position = position;
 	}
 
-	public CheckerType getCheckerType() {
-		return this.checkerType;
+	public long getCheckerTypeId() {
+		return this.checkerTypeId;
 	}
 
-	public void setCheckerType(CheckerType checkerType) {
-		this.checkerType = checkerType;
-	}
-
-	public List<CheckerDetails> getCheckerDetails() {
-		return this.checkerDetails;
-	}
-
-	public void setCheckerDetails(List<CheckerDetails> checkerDetails) {
-		this.checkerDetails = checkerDetails;
-	}
-
-	public CheckerDetails addCheckerDetails(CheckerDetails checkerDetails) {
-		getCheckerDetails().add(checkerDetails);
-		checkerDetails.setCheckerDefinition(this);
-
-		return checkerDetails;
-	}
-
-	public CheckerDetails removeCheckerDetails(CheckerDetails checkerDetails) {
-		getCheckerDetails().remove(checkerDetails);
-		checkerDetails.setCheckerDefinition(null);
-
-		return checkerDetails;
+	public void setCheckerTypeId(long checkerTypeId) {
+		this.checkerTypeId = checkerTypeId;
 	}
 
 }
