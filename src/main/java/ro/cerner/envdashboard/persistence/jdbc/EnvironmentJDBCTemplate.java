@@ -83,4 +83,11 @@ public class EnvironmentJDBCTemplate implements EnvironmentDAO{
 		return environments;
 	}
 
+	@Override
+	public void updateEnvironmentStatus(Integer environmentId, Boolean status) {
+		String SQL = "update Environment set LastChecked = GETDATE(), Status = ? where id = ?";
+		jdbcTemplateObject.update(SQL, status, environmentId);
+		System.out.println("Updated Record with ID = " + environmentId);
+	}
+
 }
