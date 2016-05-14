@@ -3,35 +3,51 @@ package ro.cerner.envdashboard.businesslogic.checkers;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Value;
 
 import ro.cerner.envdashboard.businesslogic.CheckResult;
 import ro.cerner.envdashboard.businesslogic.CheckStatus;
 import ro.cerner.envdashboard.businesslogic.Checker;
+import ro.cerner.envdashboard.persistence.mapper.CheckerPropertiesRecord;
+import ro.cerner.envdashboard.persistence.mapper.CheckerRecord;
 
 public class PingChecker implements Checker {
 	
 	private static final long serialVersionUID = -1922941140357964169L;
-
-	private String ip;
 	
-	private String hostname;
+	private Integer id;
+
+	private String ipHostname;
 	
 	@Value("${checker.ping.name}")
 	private String name;
 	
 	
-	public PingChecker(String ip, String hostname) {
-		this.ip = ip;
-		this.hostname = hostname;
-	}
-	
-	public PingChecker(String hostname) {
-		this.hostname = hostname;
+	public PingChecker( String ipHostname) {
+		this.ipHostname = ipHostname;
 	}
 	
 	public PingChecker() {}
+	
+	public PingChecker(Integer id) {this.id = id;}
+
+	public PingChecker(CheckerRecord checker) {
+		
+		String ipHostName = "IPHostName";
+		
+		this.id = checker.getId();
+		
+		List<CheckerPropertiesRecord> checkerPropertiesRecordList = checker.getCheckerPropertiesRecordList();
+		
+		
+		for (CheckerPropertiesRecord checkerPropertiesRecord : checkerPropertiesRecordList) {
+			if(ipHostName.equals(checkerPropertiesRecord.getFieldName())){
+				ipHostname = checkerPropertiesRecord.getFieldValue();
+			}
+		}
+	}
 
 	@Override
 	public CheckResult check() {
@@ -50,7 +66,7 @@ public class PingChecker implements Checker {
 				status = CheckStatus.SUCCESS;
 			}
 			
-			inet = InetAddress.getByName(hostname);
+			inet = InetAddress.getByName(ipHostname);
 			if(inet.isReachable(5000)){
 				System.out.println("Host by name is reacheable!");
 				status = CheckStatus.SUCCESS;
@@ -63,21 +79,24 @@ public class PingChecker implements Checker {
 			status = CheckStatus.FAILURE;
 		}
 	    
-	    return new CheckResult(status, message);
+	    return new CheckResult(status, message, name);
 	}
 	
-	public String getIp() {
-		return ip;
-	}
-
-	public String getHostname() {
-		return hostname;
+	public String getIpHostname() {
+		return ipHostname;
 	}
 
 	@Override
 	public String getName() {
-		// TODO Auto-generated method stub
-		return null;
+		return name;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 

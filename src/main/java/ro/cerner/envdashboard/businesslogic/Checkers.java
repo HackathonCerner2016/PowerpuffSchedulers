@@ -25,8 +25,7 @@ public class Checkers {
 			case(SCHEDULING_LOGIN_CHECKER):
 						return new LoginSchedulingChecker(checker);
             case(WINDOWS_SERVICE_CHECKER):
-                return new WindowsServiceChecker();
-		
+                return new WindowsServiceChecker();		
 		}
 		return null;
 		

@@ -3,15 +3,10 @@ package ro.cerner.envdashboard;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
-
-import ro.cerner.envdashboard.businesslogic.CheckResult;
-import ro.cerner.envdashboard.businesslogic.Checker;
-import ro.cerner.envdashboard.businesslogic.Environment;
-import ro.cerner.envdashboard.businesslogic.checkers.DatabaseChecker;
-import ro.cerner.envdashboard.businesslogic.checkers.LoginSchedulingChecker;
-import ro.cerner.envdashboard.businesslogic.checkers.PingChecker;
 
 @Component
 public class ScheduledTasks {
@@ -62,25 +57,27 @@ public class ScheduledTasks {
         System.out.println("LoginSchedulingChecker.check() => " + checkResult);	
     } */
     
-    @Scheduled(fixedRate = 5000)
-    public void runLEnvironmentCheckers() {
+    @Scheduled(fixedRate = 100000)
+    public void runEnvironmentCheckers() {
         
-    	//get environment from UI
-    	Environment environment = new Environment(1, "SD", "Soarian Development Environment");
+    	@SuppressWarnings("resource")
+    	ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
+
+    /*	EnvironmentDAO environmentDAO = (EnvironmentJDBCTemplate) context.getBean("EnvironmentJDBCTemplate");
     	
-    	//get list of checkers for environment from db
-    	
-    	Checker pingChecker = new PingChecker("usmlvv1srn284", "10.175.125.55");
-        Checker databaseChecker = new DatabaseChecker("USMLVV1SRN284", "SD_SCHDATA", "1433", "sa", "TEETIME@PEBBLEBEACH23");
-        Checker loginSchedulingChecker = new LoginSchedulingChecker("https://usmlvv1srn284.usmlvv1d0a.smshsc.net/sd/scheduling/security/Logon.pba", "test9", "test9");
+    	//get list of environments from db
+  	    List<ro.cerner.envdashboard.persistence.Environment> listOfEnvironments = environmentDAO.getEnvironments();
+  	    
+  	    //call execute env checkers for each of them
+  	    for (ro.cerner.envdashboard.persistence.Environment environment : listOfEnvironments) {
+			List<ro.cerner.envdashboard.persistence.model.Checker> envCheckersList = null;//environmentDAO.getCheckers(environment.getId());
+			
+			for (ro.cerner.envdashboard.persistence.model.Checker modelChecker : envCheckersList){
+				Checker checker = Checkers.getChecker(modelChecker);
+			    
+			}		}
 		
-		environment.getCheckersList().add(pingChecker);
-		environment.getCheckersList().add(databaseChecker);
-		environment.getCheckersList().add(loginSchedulingChecker);	
-		
-		CheckResult checkResult = environment.check();
-		
-		System.out.println(environment.getName() + " => " + checkResult);	
+		System.out.println(environment.getName() + " => " + checkResult);	*/
 		
     }
 }

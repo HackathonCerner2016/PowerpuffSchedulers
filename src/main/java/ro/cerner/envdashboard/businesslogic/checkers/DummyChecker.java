@@ -62,6 +62,13 @@ public class DummyChecker implements Checker {
 		this.mokedResult = mokedResult;
 	}
 
+
+	@Override
+	public Integer getId() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	
 
 }
