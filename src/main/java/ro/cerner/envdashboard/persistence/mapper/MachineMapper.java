@@ -1,9 +1,11 @@
-package ro.cerner.envdashboard.persistence;
+package ro.cerner.envdashboard.persistence.mapper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import org.springframework.jdbc.core.RowMapper;
+
+import ro.cerner.envdashboard.persistence.model.Machine;
 
 
 public class MachineMapper implements RowMapper<Machine> 

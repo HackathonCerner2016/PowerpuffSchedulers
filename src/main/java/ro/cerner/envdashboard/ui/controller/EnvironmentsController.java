@@ -7,9 +7,9 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import ro.cerner.envdashboard.persistence.Environment;
-import ro.cerner.envdashboard.persistence.EnvironmentDAO;
-import ro.cerner.envdashboard.persistence.EnvironmentJDBCTemplate;
+import ro.cerner.envdashboard.persistence.dao.EnvironmentDAO;
+import ro.cerner.envdashboard.persistence.jdbc.EnvironmentJDBCTemplate;
+import ro.cerner.envdashboard.persistence.model.Environment;
 
 @RestController
 public class EnvironmentsController {

@@ -1,4 +1,4 @@
-package ro.cerner.envdashboard.persistence;
+package ro.cerner.envdashboard.persistence.jdbc;
 
 import java.sql.Date;
 import java.util.List;
@@ -8,6 +8,7 @@ import javax.sql.DataSource;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import ro.cerner.envdashboard.persistence.dao.CheckerResultDAO;
+import ro.cerner.envdashboard.persistence.mapper.CheckerResultMapper;
 import ro.cerner.envdashboard.persistence.model.CheckerResult;
 
 public class CheckerResultJDBCTemplate implements CheckerResultDAO {

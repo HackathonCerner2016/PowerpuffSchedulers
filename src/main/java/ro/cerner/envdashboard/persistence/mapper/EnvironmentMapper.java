@@ -1,10 +1,12 @@
-package ro.cerner.envdashboard.persistence;
+package ro.cerner.envdashboard.persistence.mapper;
 
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import org.springframework.jdbc.core.RowMapper;
+
+import ro.cerner.envdashboard.persistence.model.Environment;
 
 public class EnvironmentMapper implements RowMapper<Environment> {
 

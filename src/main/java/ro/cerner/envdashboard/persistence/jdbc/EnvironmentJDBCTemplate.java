@@ -1,4 +1,4 @@
-package ro.cerner.envdashboard.persistence;
+package ro.cerner.envdashboard.persistence.jdbc;
 
 import java.util.Date;
 import java.util.List;
@@ -6,6 +6,10 @@ import java.util.List;
 import javax.sql.DataSource;
 
 import org.springframework.jdbc.core.JdbcTemplate;
+
+import ro.cerner.envdashboard.persistence.dao.EnvironmentDAO;
+import ro.cerner.envdashboard.persistence.mapper.EnvironmentMapper;
+import ro.cerner.envdashboard.persistence.model.Environment;
  
 public class EnvironmentJDBCTemplate implements EnvironmentDAO{
 	

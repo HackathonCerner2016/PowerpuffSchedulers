@@ -1,4 +1,4 @@
-package ro.cerner.envdashboard.persistence;
+package ro.cerner.envdashboard.persistence.model;
 
 import java.sql.Date;
 

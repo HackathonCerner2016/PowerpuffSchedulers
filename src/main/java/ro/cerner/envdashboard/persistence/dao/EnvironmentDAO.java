@@ -1,9 +1,11 @@
-package ro.cerner.envdashboard.persistence;
+package ro.cerner.envdashboard.persistence.dao;
 
 import java.util.Date;
 import java.util.List;
 
 import javax.sql.DataSource;
+
+import ro.cerner.envdashboard.persistence.model.Environment;
 
 
 public interface EnvironmentDAO {
