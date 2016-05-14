@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
+import ro.cerner.envdashboard.persistence.mapper.CheckerPropertiesRecord;
 import ro.cerner.envdashboard.persistence.mapper.CheckerRecord;
 import ro.cerner.envdashboard.persistence.model.Environment;
 
@@ -24,6 +25,8 @@ public interface EnvironmentDAO {
 	public void update(Integer id, String name, String description, Date lastChecked, Boolean status);
 
 	public List<CheckerRecord> getCheckersByEnvironmentId(Integer environmentId);
+	
+	public List<CheckerPropertiesRecord> getCheckersPropertiesByCheckerIds(String checkerIds);
 
 }
  

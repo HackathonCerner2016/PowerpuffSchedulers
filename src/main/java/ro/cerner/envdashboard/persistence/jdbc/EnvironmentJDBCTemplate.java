@@ -8,6 +8,8 @@ import javax.sql.DataSource;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import ro.cerner.envdashboard.persistence.dao.EnvironmentDAO;
+import ro.cerner.envdashboard.persistence.mapper.CheckerPropertiesRecord;
+import ro.cerner.envdashboard.persistence.mapper.CheckerPropertiesRecordMapper;
 import ro.cerner.envdashboard.persistence.mapper.CheckerRecord;
 import ro.cerner.envdashboard.persistence.mapper.CheckerRecordMapper;
 import ro.cerner.envdashboard.persistence.mapper.EnvironmentMapper;
@@ -66,6 +68,18 @@ public class EnvironmentJDBCTemplate implements EnvironmentDAO{
 	public List<CheckerRecord> getCheckersByEnvironmentId(Integer environmentId) {
 		String SQL = "select c.id, c.checkerTypeId, ct.name, c.environmentId, c.machineId from Checker c inner join CheckerType ct on ct.id = c.checkerTypeId where c.environmentId = ?";
 		List<CheckerRecord> environments = jdbcTemplateObject.query(SQL, new Object[] { environmentId }, new CheckerRecordMapper());
+		if (environments!= null && environments.size() > 0) {
+			for (CheckerRecord checkerRecord : environments) {
+				checkerRecord.setCheckerPropertiesRecordList(getCheckersPropertiesByCheckerIds(checkerRecord.getId()+""));
+			}
+		}
+		return environments;
+	}
+
+	@Override
+	public List<CheckerPropertiesRecord> getCheckersPropertiesByCheckerIds(String checkerId) {
+		String SQL = "select cd.id, cd.checkerDefinitionId, cdef.fieldName, cd.fieldValue, cdef.position from checkerDetails cd inner join checkerDefinition cdef on cd.checkerDefinitionId = cdef.id where cd.checkerId = ? order by cd.id";
+		List<CheckerPropertiesRecord> environments = jdbcTemplateObject.query(SQL, new Object[] { checkerId }, new CheckerPropertiesRecordMapper());
 		return environments;
 	}
 

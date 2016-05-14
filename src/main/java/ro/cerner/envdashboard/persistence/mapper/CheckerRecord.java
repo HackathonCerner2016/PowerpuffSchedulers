@@ -1,5 +1,7 @@
 package ro.cerner.envdashboard.persistence.mapper;
 
+import java.util.List;
+
 public class CheckerRecord {
 
 	private Integer id;
@@ -7,6 +9,7 @@ public class CheckerRecord {
 	private String checkerTypeName;
 	private Integer environmentId;
 	private Integer machineId;
+	List<CheckerPropertiesRecord> checkerPropertiesRecordList;
 	
 	public Integer getId() {
 		return id;
@@ -39,5 +42,12 @@ public class CheckerRecord {
 	public void setMachineId(Integer machineId) {
 		this.machineId = machineId;
 	}
+	public List<CheckerPropertiesRecord> getCheckerPropertiesRecordList() {
+		return checkerPropertiesRecordList;
+	}
+	public void setCheckerPropertiesRecordList(List<CheckerPropertiesRecord> checkerPropertiesRecordList) {
+		this.checkerPropertiesRecordList = checkerPropertiesRecordList;
+	}
+	
 	
 }
