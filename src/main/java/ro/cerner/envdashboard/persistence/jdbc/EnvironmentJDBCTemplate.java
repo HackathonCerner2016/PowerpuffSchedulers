@@ -36,7 +36,7 @@ public class EnvironmentJDBCTemplate implements EnvironmentDAO{
 
 	@Override
 	public Environment getEnvironment(Integer id) {
-		String SQL = "select * from Environment where Id = ?";
+		String SQL = "select id, name, description, lastchecked, CONVERT(varchar(10), status) as status from Environment where Id = ?";
 		Environment environment = jdbcTemplateObject.queryForObject(SQL, new Object[] { id }, new EnvironmentMapper());
 		return environment;
 	}
@@ -45,7 +45,7 @@ public class EnvironmentJDBCTemplate implements EnvironmentDAO{
 
 	@Override
 	public List<Environment> getEnvironments() {
-		String SQL = "select * from Environment";
+		String SQL = "select id, name, description, lastchecked, CONVERT(varchar(10), status) as status from Environment";
 		List<Environment> environments = jdbcTemplateObject.query(SQL, new EnvironmentMapper());
 		return environments;
 	}
