@@ -11,7 +11,7 @@ import ro.cerner.envdashboard.persistence.mapper.CheckerRecord;
 import ro.cerner.envdashboard.persistence.model.Environment;
 
 public class EnvironmentApp {
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		@SuppressWarnings("resource")
 		ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
 
@@ -48,5 +48,5 @@ public class EnvironmentApp {
 		}
 		
 		environmentJDBCTemplate.updateEnvironmentStatus(1, false);
-	}
+	}*/
 }
