@@ -7,22 +7,47 @@ import static ro.cerner.envdashboard.businesslogic.CheckStatus.WARNING;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Value;
 
 import ro.cerner.envdashboard.businesslogic.CheckResult;
 import ro.cerner.envdashboard.businesslogic.CheckStatus;
 import ro.cerner.envdashboard.businesslogic.Checker;
+import ro.cerner.envdashboard.persistence.mapper.CheckerPropertiesRecord;
+import ro.cerner.envdashboard.persistence.mapper.CheckerRecord;
 
 public class WindowsServiceChecker implements Checker {
 
     private static final long serialVersionUID = 1L;
-
+    
+    private Integer id;
     private String host;
     private String serviceName;
 
     @Value("${checkers.windowsService.name}")
     private String name;
+
+    public WindowsServiceChecker(CheckerRecord checker) {
+        final String hostDb = "Host";
+        final String serviceNameDb = "ServiceName";
+        
+        this.id = checker.getId();
+        
+        List<CheckerPropertiesRecord> checkerPropertiesRecordList = checker.getCheckerPropertiesRecordList();
+        
+        
+        for (CheckerPropertiesRecord checkerPropertiesRecord : checkerPropertiesRecordList) {
+            switch (checkerPropertiesRecord.getFieldName()) {
+            case (hostDb):
+                host = checkerPropertiesRecord.getFieldValue();
+                break;
+            case (serviceNameDb):
+                serviceName = checkerPropertiesRecord.getFieldValue();
+                break;
+            }
+        }
+    }
 
     @Override
     public CheckResult check() {
@@ -101,8 +126,7 @@ public class WindowsServiceChecker implements Checker {
 
 	@Override
 	public Integer getId() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.id;
 	}
 
 }
