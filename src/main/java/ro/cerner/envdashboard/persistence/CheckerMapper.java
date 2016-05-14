@@ -11,11 +11,11 @@ public class CheckerMapper implements RowMapper<Checker> {
 
 	@Override
 	public Checker mapRow(ResultSet rs, int rowNum) throws SQLException {
-		Checker machine = new Checker();
-		machine.setId(rs.getInt("Id"));
-		machine.setCheckerTypeId(rs.getInt("CheckerTypeId"));
-		machine.setEnvironmentId(rs.getInt("EnvironmentId"));
-		machine.setMachineId(rs.getInt("MachineId"));
-		return machine;
+		Checker checker = new Checker();
+		checker.setId(rs.getInt("Id"));
+		checker.setCheckerTypeId(rs.getInt("CheckerTypeId"));
+		checker.setEnvironmentId(rs.getInt("EnvironmentId"));
+		checker.setMachineId(rs.getInt("MachineId"));
+		return checker;
 	}
 }

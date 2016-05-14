@@ -9,8 +9,6 @@ public class Checker {
 	
 	public Checker() {
 	}
-	
-	
 
 	public Checker(long checkerTypeId, long environmentId,
 			long machineId) {
@@ -19,8 +17,6 @@ public class Checker {
 		this.environmentId = environmentId;
 		this.machineId = machineId;
 	}
-
-
 
 	public long getId() {
 		return this.id;
