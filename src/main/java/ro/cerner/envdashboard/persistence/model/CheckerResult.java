@@ -1,39 +1,26 @@
 package ro.cerner.envdashboard.persistence.model;
 
-import java.io.Serializable;
-import javax.persistence.*;
-import java.sql.Timestamp;
+import java.sql.Date;
 
 
-/**
- * The persistent class for the CheckerResults database table.
- * 
- */
-@Entity
-@Table(name="CheckerResults")
-@NamedQuery(name="CheckerResult.findAll", query="SELECT c FROM CheckerResult c")
-public class CheckerResult implements Serializable {
-	private static final long serialVersionUID = 1L;
+public class CheckerResult {
 
-	@Id
-	@Column(name="Id")
 	private long id;
-
-	@Column(name="Message")
-	private Object message;
-
-	@Column(name="Status")
+	private String message;
 	private boolean status;
-
-	@Column(name="TimeStamp")
-	private Timestamp timeStamp;
-
-	//bi-directional many-to-one association to Checker
-	@ManyToOne
-	@JoinColumn(name="CheckerId")
+	private Date timeStamp;
 	private Checker checker;
 
 	public CheckerResult() {
+	}
+	
+	public CheckerResult(String message, boolean status, Date timeStamp,
+			Checker checker) {
+		super();
+		this.message = message;
+		this.status = status;
+		this.timeStamp = timeStamp;
+		this.checker = checker;
 	}
 
 	public long getId() {
@@ -44,11 +31,11 @@ public class CheckerResult implements Serializable {
 		this.id = id;
 	}
 
-	public Object getMessage() {
+	public String getMessage() {
 		return this.message;
 	}
 
-	public void setMessage(Object message) {
+	public void setMessage(String message) {
 		this.message = message;
 	}
 
@@ -60,11 +47,11 @@ public class CheckerResult implements Serializable {
 		this.status = status;
 	}
 
-	public Timestamp getTimeStamp() {
+	public Date getTimeStamp() {
 		return this.timeStamp;
 	}
 
-	public void setTimeStamp(Timestamp timeStamp) {
+	public void setTimeStamp(Date timeStamp) {
 		this.timeStamp = timeStamp;
 	}
 
@@ -74,6 +61,14 @@ public class CheckerResult implements Serializable {
 
 	public void setChecker(Checker checker) {
 		this.checker = checker;
+	}
+	
+	public long getCheckerId() {
+		return this.checker.getId();
+	}
+
+	public void setCheckerId(long checkerId) {
+		this.checker.setId(checkerId);
 	}
 
 }

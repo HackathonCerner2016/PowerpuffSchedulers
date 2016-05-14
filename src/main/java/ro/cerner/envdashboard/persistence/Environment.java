@@ -1,6 +1,6 @@
 package ro.cerner.envdashboard.persistence;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class Environment {
 
@@ -39,6 +39,5 @@ public class Environment {
 	public void setStatus(Boolean status) {
 		this.status = status;
 	}
-	
 	
 }
